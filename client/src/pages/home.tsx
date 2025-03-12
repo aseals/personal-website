@@ -10,7 +10,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <div className="min-h-screen p-8 flex items-start">
-        <div className="w-[240px] animate-pulse space-y-4 ml-[120px]">
+        <div className="w-[240px] animate-pulse space-y-4 ml-[120px] mt-[120px]">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="h-8 bg-muted rounded" />
           ))}
@@ -21,20 +21,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-8 flex items-start">
-      <div className="w-[240px] ml-[120px]">
+      <div className="w-[240px] ml-[120px] mt-[120px]">
         <ProjectList projects={projects || []} />
       </div>
 
       <div className="fixed left-1/2 top-[120px] -translate-x-1/2">
-        <h1 className="text-xl font-medium mb-1">Seyit Yilmaz</h1>
+        <h1 className="text-xl font-medium mb-1">Ayanna Seals, PhD</h1>
         <p className="text-muted-foreground text-base">
-          human interface designer at Apple
+          Big Data & AI UX Strategist | Turning Complex Data into Clear, Actionable Insights
         </p>
         <div className="mt-4 space-x-6">
           <a href="#" className="text-sm text-muted-foreground hover:text-foreground">About</a>
           <a href="#" className="text-sm text-muted-foreground hover:text-foreground">Email</a>
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground">LinkedIn</a>
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground">Twitter</a>
+          <a href="https://www.linkedin.com/in/ayannaseals/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">LinkedIn</a>
+          <a href="https://scholar.google.com/citations?user=-XXuiGkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">Scholar</a>
         </div>
       </div>
     </div>
