@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Project } from "@shared/schema";
 import ProjectList from "@/components/project-list";
-import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   const { data: projects, isLoading } = useQuery<Project[]>({
@@ -10,12 +9,10 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen p-6 md:p-12">
-        <div className="max-w-2xl mx-auto space-y-4">
+      <div className="min-h-screen p-8 md:p-12">
+        <div className="max-w-xl mx-auto animate-pulse space-y-4">
           {[...Array(5)].map((_, i) => (
-            <Card key={i} className="w-full animate-pulse">
-              <CardContent className="h-16" />
-            </Card>
+            <div key={i} className="h-8 bg-muted rounded" />
           ))}
         </div>
       </div>
@@ -23,12 +20,14 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen p-6 md:p-12">
-      <div className="max-w-2xl mx-auto">
-        <header className="mb-12">
-          <h1 className="text-2xl font-medium">Seyit Yilmaz</h1>
-          <p className="text-muted-foreground">human interface designer at Apple</p>
-          <div className="mt-4 space-x-4">
+    <div className="min-h-screen p-8 md:p-12">
+      <div className="max-w-xl mx-auto">
+        <header className="mb-16">
+          <h1 className="text-xl font-medium mb-1">Seyit Yilmaz</h1>
+          <p className="text-muted-foreground text-base">
+            human interface designer at Apple
+          </p>
+          <div className="mt-4 space-x-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground">About</a>
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground">Email</a>
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground">LinkedIn</a>
