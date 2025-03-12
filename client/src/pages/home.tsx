@@ -28,8 +28,14 @@ export default function Home() {
         <header className="mb-12">
           <h1 className="text-2xl font-medium">Seyit Yilmaz</h1>
           <p className="text-muted-foreground">human interface designer at Apple</p>
+          <div className="mt-4 space-x-4">
+            <a href="#" className="text-sm text-muted-foreground hover:text-foreground">About</a>
+            <a href="#" className="text-sm text-muted-foreground hover:text-foreground">Email</a>
+            <a href="#" className="text-sm text-muted-foreground hover:text-foreground">LinkedIn</a>
+            <a href="#" className="text-sm text-muted-foreground hover:text-foreground">Twitter</a>
+          </div>
         </header>
-        
+
         <ProjectList projects={projects || []} />
       </div>
     </div>

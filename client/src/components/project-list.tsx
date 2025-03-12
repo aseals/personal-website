@@ -30,18 +30,24 @@ export default function ProjectList({ projects }: ProjectListProps) {
     <>
       <div className="space-y-8">
         {years.map((year) => (
-          <div key={year}>
-            <h2 className="text-sm text-muted-foreground mb-4">{year}</h2>
-            <div className="space-y-2">
+          <div key={year} className="group">
+            <div className="flex items-center mb-4">
+              <div className="flex-grow border-t border-border"></div>
+              <span className="text-sm text-muted-foreground px-4">{year}</span>
+              <div className="flex-grow border-t border-border"></div>
+            </div>
+            <div className="space-y-6">
               {projectsByYear[year].map((project) => (
                 <motion.button
                   key={project.id}
-                  className="w-full text-left p-4 hover:bg-accent rounded-lg transition-colors"
+                  className="w-full text-left py-2 transition-colors hover:bg-accent rounded-lg px-4"
                   onClick={() => setSelectedProject(project)}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                 >
-                  <span className="text-lg font-medium">{project.title}</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg">{project.title}</span>
+                  </div>
                 </motion.button>
               ))}
             </div>
