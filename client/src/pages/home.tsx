@@ -9,8 +9,8 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen p-8 grid grid-cols-[240px_1fr] gap-x-32">
-        <div className="mt-[240px] ml-[120px]">
+      <div className="min-h-screen p-8 grid lg:grid-cols-[240px_1fr] gap-x-32">
+        <div className="mt-[240px] lg:ml-[120px]">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="h-8 bg-muted rounded mb-4" />
           ))}
@@ -20,12 +20,12 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen p-8 grid grid-cols-[240px_1fr] gap-x-32">
-      <div className="mt-[240px] ml-[120px]">
+    <div className="min-h-screen p-8 grid lg:grid-cols-[240px_1fr] gap-x-32">
+      <div className="order-2 lg:order-1 mt-8 lg:mt-[240px] lg:ml-[120px]">
         <ProjectList projects={projects || []} />
       </div>
 
-      <div className="mt-[240px]">
+      <div className="order-1 lg:order-2 mt-[240px]">
         <h1 className="text-xl font-medium mb-1">Ayanna Seals, PhD</h1>
         <p className="text-muted-foreground text-base">
           Big Data & AI UX Strategist | Turning Complex Data into Clear, Actionable Insights
