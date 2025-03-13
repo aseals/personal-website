@@ -9,10 +9,10 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen p-8 flex items-start">
-        <div className="w-[240px] animate-pulse space-y-4 ml-[120px] mt-[120px]">
+      <div className="min-h-screen p-8 grid grid-cols-[240px_1fr] gap-x-32">
+        <div className="mt-[240px] ml-[120px]">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="h-8 bg-muted rounded" />
+            <div key={i} className="h-8 bg-muted rounded mb-4" />
           ))}
         </div>
       </div>
@@ -20,12 +20,12 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen p-8 flex items-start">
-      <div className="w-[240px] ml-[120px] mt-[120px]">
+    <div className="min-h-screen p-8 grid grid-cols-[240px_1fr] gap-x-32">
+      <div className="mt-[240px] ml-[120px]">
         <ProjectList projects={projects || []} />
       </div>
 
-      <div className="fixed left-1/2 top-[120px] -translate-x-1/2">
+      <div className="mt-[240px]">
         <h1 className="text-xl font-medium mb-1">Ayanna Seals, PhD</h1>
         <p className="text-muted-foreground text-base">
           Big Data & AI UX Strategist | Turning Complex Data into Clear, Actionable Insights
