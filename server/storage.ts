@@ -19,7 +19,7 @@ export class MemStorage implements IStorage {
         title: "DM Resharing",
         year: 2022,
         type: "Feature",
-        imageUrl: "https://source.unsplash.com/random/800x1000?ui=1",
+        imageUrl: "https://source.unsplash.com/random/800x800?ui=1",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/168/original/Record.mp4",
         order: 1
       },
@@ -27,7 +27,7 @@ export class MemStorage implements IStorage {
         title: "Media Viewer",
         year: 2022,
         type: "Feature",
-        imageUrl: "https://source.unsplash.com/random/800x1000?app=2",
+        imageUrl: "https://source.unsplash.com/random/800x800?interface=2",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/128/original/Mobile.mp4",
         order: 2
       },
@@ -35,9 +35,33 @@ export class MemStorage implements IStorage {
         title: "Command System",
         year: 2022,
         type: "System",
-        imageUrl: "https://source.unsplash.com/random/800x1000?design=3",
+        imageUrl: "https://source.unsplash.com/random/800x800?tech=3",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/160/original/Typing.mp4",
         order: 3
+      },
+      {
+        title: "Data Visualization",
+        year: 2023,
+        type: "Analytics",
+        imageUrl: "https://source.unsplash.com/random/800x800?data=4",
+        videoUrl: "https://static.videezy.com/system/resources/previews/000/000/158/original/Analytics.mp4",
+        order: 4
+      },
+      {
+        title: "AI Insights",
+        year: 2023,
+        type: "Research",
+        imageUrl: "https://source.unsplash.com/random/800x800?ai=5",
+        videoUrl: "https://static.videezy.com/system/resources/previews/000/000/166/original/AI.mp4",
+        order: 5
+      },
+      {
+        title: "UX Strategy",
+        year: 2023,
+        type: "Design",
+        imageUrl: "https://source.unsplash.com/random/800x800?ux=6",
+        videoUrl: "https://static.videezy.com/system/resources/previews/000/000/164/original/UX.mp4",
+        order: 6
       }
     ];
 
