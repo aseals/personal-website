@@ -9,7 +9,7 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen p-8 grid lg:grid-cols-[240px_1fr] gap-x-32">
+      <div className="min-h-screen p-8 grid lg:grid-cols-[300px_1fr] gap-x-32">
         <div className="mt-[240px] lg:ml-[120px]">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="h-8 bg-muted rounded mb-4" />
@@ -20,7 +20,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen p-8 grid lg:grid-cols-[240px_1fr] gap-x-32">
+    <div className="min-h-screen p-8 grid lg:grid-cols-[300px_1fr] gap-x-32">
       <div className="order-2 lg:order-1 mt-8 lg:mt-[240px] lg:ml-[120px]">
         <ProjectList projects={projects || []} />
       </div>
