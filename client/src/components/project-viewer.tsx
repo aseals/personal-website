@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { Project } from "@shared/schema";
-import { useState, useEffect } from "react";
 
 interface ProjectViewerProps {
   project: Project;
@@ -11,12 +10,6 @@ interface ProjectViewerProps {
 }
 
 export default function ProjectViewer({ project, onClose, onMouseLeave, cursorProgress }: ProjectViewerProps) {
-  //const [isPlaying, setIsPlaying] = useState(false); // Removed as video is always shown
-
-  //useEffect(() => {
-  //  setIsPlaying(false);
-  //}, [project.id]); // Removed
-
   // Calculate x position based on cursor progress
   // Move 85% left by default (-85%), then add subtle movement based on cursor (-5% to +5%)
   const xOffset = -85 + (cursorProgress - 0.5) * 10; // This creates a subtle 10% total movement range
@@ -32,7 +25,11 @@ export default function ProjectViewer({ project, onClose, onMouseLeave, cursorPr
       transition={{ 
         x: { type: "spring", stiffness: 100, damping: 20 }
       }}
-      exit={{ scale: 0.9, opacity: 0 }}
+      exit={{ 
+        scale: 0.8,
+        opacity: 0,
+        transition: { duration: 0.25, ease: "easeOut" }
+      }}
       className="fixed left-1/2 top-[10%] w-full max-w-[330px] rounded-xl overflow-hidden shadow-xl bg-card z-50"
       onClick={(e) => e.stopPropagation()}
       onMouseLeave={onMouseLeave}
