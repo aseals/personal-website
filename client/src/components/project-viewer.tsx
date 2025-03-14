@@ -21,7 +21,7 @@ export default function ProjectViewer({ project, onClose, onMouseLeave }: Projec
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.9, opacity: 0 }}
-      className="fixed left-1/2 top-[20%] -translate-x-1/2 w-full max-w-[390px] rounded-xl overflow-hidden shadow-xl bg-card z-50"
+      className="fixed left-1/2 top-[10%] -translate-x-1/2 w-full max-w-[330px] rounded-xl overflow-hidden shadow-xl bg-card z-50"
       onClick={(e) => e.stopPropagation()}
       onMouseLeave={onMouseLeave}
     >
