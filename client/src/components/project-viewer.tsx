@@ -24,7 +24,8 @@ export default function ProjectViewer({ project, onClose, onMouseLeave }: Projec
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
-      onMouseLeave={() => !isPlaying && onMouseLeave()}
+      onMouseLeave={onMouseLeave}
+      key={project.id} // Added key prop here
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
