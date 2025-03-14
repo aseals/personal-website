@@ -28,7 +28,7 @@ export default function Home() {
       <div className="order-1 lg:order-2 mt-[240px]">
         <h1 className="text-xl font-medium mb-1">Ayanna Seals, PhD</h1>
         <p className="text-muted-foreground text-base">
-          Big Data & AI UX Strategist | Turning Complex Data into Clear, Actionable Insights
+          Adventurer and UX Strategist Turning Complex Data into Clear, Actionable Insights
         </p>
         <div className="mt-4 space-x-6">
           <a href="#" className="text-sm text-muted-foreground hover:text-foreground">About</a>
