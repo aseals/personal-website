@@ -28,7 +28,7 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress }:
         opacity: 0,
         transition: { duration: 0.25, ease: "easeOut" }
       }}
-      className="fixed left-1/2 top-[10%] w-full max-w-[330px] rounded-xl overflow-hidden shadow-xl bg-card z-50"
+      className="fixed left-1/2 top-[10%] w-full max-w-[330px] rounded-xl overflow-hidden shadow-xl z-50"
       onClick={(e) => e.stopPropagation()}
       onMouseLeave={onMouseLeave}
     >
@@ -45,9 +45,9 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress }:
           />
         </div>
       </div>
-      <div className="p-4 bg-white dark:bg-gray-900">
+      <div className="p-4">
         <h3 className="font-medium text-lg">{project.title}</h3>
-        <p className="text-sm text-muted-foreground mt-1">{project.type}</p>
+        <p className="text-sm text-muted-foreground">{project.type}</p>
       </div>
     </motion.div>
   );
