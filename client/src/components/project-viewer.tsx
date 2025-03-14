@@ -10,17 +10,16 @@ interface ProjectViewerProps {
 }
 
 export default function ProjectViewer({ project, onMouseLeave, cursorProgress, onClose }: ProjectViewerProps) {
-  // Calculate x position based on cursor progress
-  // Move 85% left by default (-85%), then add subtle movement based on cursor (-5% to +5%)
-  const xOffset = -85 + (cursorProgress - 0.5) * 10; // This creates a subtle 10% total movement range
+  // Calculate x position based on cursor progress - only used for desktop
+  const xOffset = -85 + (cursorProgress - 0.5) * 10;
 
   return (
     <motion.div
-      initial={{ scale: 0.9, opacity: 0, x: `${xOffset}%` }}
+      initial={{ scale: 0.9, opacity: 0 }}
       animate={{ 
         scale: 1, 
         opacity: 1,
-        x: `${xOffset}%`
+        x: window.innerWidth >= 1024 ? `${xOffset}%` : 0
       }}
       transition={{ 
         x: { type: "spring", stiffness: 100, damping: 20 }
@@ -30,11 +29,11 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress, o
         opacity: 0,
         transition: { duration: 0.25, ease: "easeOut" }
       }}
-      className="fixed inset-0 sm:inset-auto sm:left-1/2 sm:top-[10%] flex items-center justify-center sm:block w-full sm:max-w-[330px] z-50"
+      className="fixed inset-0 lg:inset-auto lg:left-1/2 lg:top-[10%] flex items-center justify-center lg:block w-full lg:max-w-[330px] z-50"
       onClick={(e) => e.stopPropagation()}
       onMouseLeave={onMouseLeave}
     >
-      <div className="relative bg-black rounded-xl overflow-hidden shadow-xl w-[calc(100%-2rem)] sm:w-full">
+      <div className="relative bg-black rounded-xl overflow-hidden shadow-xl w-[calc(100%-2rem)] lg:w-full">
         <div className="aspect-[9/16] relative">
           <video
             src={project.videoUrl}
