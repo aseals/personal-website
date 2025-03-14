@@ -19,7 +19,7 @@ export class MemStorage implements IStorage {
         title: "AI Insight Dashboard",
         year: 2023,
         type: "UX Research",
-        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=800&q=80",
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=1600&q=80",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/168/original/Record.mp4",
         order: 1
       },
@@ -43,7 +43,7 @@ export class MemStorage implements IStorage {
         title: "Predictive Analytics Platform",
         year: 2022,
         type: "Big Data",
-        imageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=800&q=80",
+        imageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=1600&q=80",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/158/original/Analytics.mp4",
         order: 4
       },
