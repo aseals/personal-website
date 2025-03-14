@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { Project } from "@shared/schema";
+import { useState } from "react";
 
 interface ProjectViewerProps {
   project: Project;
@@ -8,6 +9,8 @@ interface ProjectViewerProps {
 }
 
 export default function ProjectViewer({ project, onClose }: ProjectViewerProps) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -25,14 +28,23 @@ export default function ProjectViewer({ project, onClose }: ProjectViewerProps) 
       >
         <div className="relative bg-black">
           <div className="aspect-[9/16] relative">
-            <video
-              src={project.videoUrl}
-              className="w-full h-full object-cover"
-              autoPlay
-              controls
-              playsInline
-              onClick={(e) => e.stopPropagation()}
-            />
+            {!isPlaying ? (
+              <img
+                src={project.imageUrl}
+                alt={project.title}
+                className="w-full h-full object-cover cursor-pointer"
+                onClick={() => setIsPlaying(true)}
+              />
+            ) : (
+              <video
+                src={project.videoUrl}
+                className="w-full h-full object-cover"
+                autoPlay
+                controls
+                playsInline
+                onClick={(e) => e.stopPropagation()}
+              />
+            )}
           </div>
           <button
             onClick={onClose}

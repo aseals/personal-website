@@ -3,6 +3,10 @@ import type { Project } from "@shared/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import ProjectViewer from "./project-viewer";
 
+type ProjectsByYear = {
+  [key: number]: Project[];
+};
+
 interface ProjectListProps {
   projects: Project[];
 }
@@ -10,32 +14,34 @@ interface ProjectListProps {
 export default function ProjectList({ projects }: ProjectListProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const projectsByYear = projects.reduce((acc, project) => {
+    if (!acc[project.year]) {
+      acc[project.year] = [];
+    }
+    acc[project.year].push(project);
+    return acc;
+  }, {} as ProjectsByYear);
+
+  const years = Object.keys(projectsByYear)
+    .map(Number)
+    .sort((a, b) => b - a);
+
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[200px] gap-4">
-        {projects.map((project, index) => (
-          <motion.button
-            key={project.id}
-            onClick={() => setSelectedProject(project)}
-            className={`group text-left ${
-              index === 0 || index === 3 ? "row-span-2" : ""
-            }`}
-          >
-            <div className="relative h-full overflow-hidden rounded-sm">
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="object-cover w-full h-full"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-            </div>
-            <h3 className="text-sm font-normal mt-2">{project.title}</h3>
-            <div className="flex gap-2 text-xs text-muted-foreground mt-1">
-              <span>{project.type}</span>
-              <span>•</span>
-              <span>{project.year}</span>
-            </div>
-          </motion.button>
+      <div className="space-y-4">
+        {years.map((year) => (
+          <div key={year}>
+            {projectsByYear[year].map((project) => (
+              <motion.button
+                key={project.id}
+                onClick={() => setSelectedProject(project)}
+                className="w-full text-left py-2 flex justify-between items-center group"
+              >
+                <span className="text-base font-medium">{project.title}</span>
+                <span className="text-sm text-muted-foreground">{year}</span>
+              </motion.button>
+            ))}
+          </div>
         ))}
       </div>
 
