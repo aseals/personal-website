@@ -7,19 +7,31 @@ interface ProjectViewerProps {
   project: Project;
   onClose: () => void;
   onMouseLeave: () => void;
+  cursorProgress: number;
 }
 
-export default function ProjectViewer({ project, onClose, onMouseLeave }: ProjectViewerProps) {
+export default function ProjectViewer({ project, onClose, onMouseLeave, cursorProgress }: ProjectViewerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     setIsPlaying(false);
   }, [project.id]);
 
+  // Calculate x position based on cursor progress
+  // Move 25% left by default (-25%), then add subtle movement based on cursor (-5% to +5%)
+  const xOffset = -25 + (cursorProgress - 0.5) * 10; // This creates a subtle 10% total movement range
+
   return (
     <motion.div
       initial={{ scale: 0.9, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
+      animate={{ 
+        scale: 1, 
+        opacity: 1,
+        x: `${xOffset}%`
+      }}
+      transition={{ 
+        x: { type: "spring", stiffness: 100, damping: 20 }
+      }}
       exit={{ scale: 0.9, opacity: 0 }}
       className="fixed left-1/2 top-[10%] -translate-x-1/2 w-full max-w-[330px] rounded-xl overflow-hidden shadow-xl bg-card z-50"
       onClick={(e) => e.stopPropagation()}

@@ -14,6 +14,7 @@ interface ProjectListProps {
 export default function ProjectList({ projects }: ProjectListProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
+  const [cursorProgress, setCursorProgress] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -34,6 +35,15 @@ export default function ProjectList({ projects }: ProjectListProps) {
   const handleMouseLeave = () => {
     if (!isDesktop) return;
     setHoveredProject(null);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!isDesktop) return;
+    const element = e.currentTarget;
+    const rect = element.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const progress = Math.max(0, Math.min(1, x / rect.width));
+    setCursorProgress(progress);
   };
 
   const projectsByYear = projects.reduce((acc, project) => {
@@ -60,6 +70,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
                 onMouseEnter={() => handleMouseEnter(project)}
+                onMouseMove={handleMouseMove}
                 className="w-full text-left py-2 flex justify-between items-center group"
               >
                 <span className="text-base font-medium">{project.title}</span>
@@ -79,6 +90,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
               setHoveredProject(null);
             }}
             onMouseLeave={handleMouseLeave}
+            cursorProgress={cursorProgress}
           />
         )}
       </AnimatePresence>
