@@ -73,7 +73,6 @@ export default function ProjectList({ projects }: ProjectListProps) {
       <AnimatePresence>
         {activeProject && (
           <ProjectViewer
-            key={activeProject.id}
             project={activeProject}
             onClose={() => {
               setSelectedProject(null);

@@ -12,7 +12,6 @@ interface ProjectViewerProps {
 export default function ProjectViewer({ project, onClose, onMouseLeave }: ProjectViewerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Reset playing state when project changes
   useEffect(() => {
     setIsPlaying(false);
   }, [project.id]);
@@ -24,8 +23,6 @@ export default function ProjectViewer({ project, onClose, onMouseLeave }: Projec
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
-      onMouseLeave={onMouseLeave}
-      key={project.id} // Added key prop here
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
@@ -33,6 +30,7 @@ export default function ProjectViewer({ project, onClose, onMouseLeave }: Projec
         exit={{ scale: 0.9, opacity: 0 }}
         className="bg-card w-full max-w-[390px] rounded-xl overflow-hidden shadow-xl"
         onClick={(e) => e.stopPropagation()}
+        onMouseLeave={onMouseLeave}
       >
         <div className="relative bg-black">
           <div className="aspect-[9/16] relative">
