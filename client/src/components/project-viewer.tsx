@@ -18,52 +18,44 @@ export default function ProjectViewer({ project, onClose, onMouseLeave }: Projec
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      onClick={onClose}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.9, opacity: 0 }}
+      className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[390px] rounded-xl overflow-hidden shadow-xl bg-card"
+      onClick={(e) => e.stopPropagation()}
+      onMouseLeave={onMouseLeave}
     >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-card w-full max-w-[390px] rounded-xl overflow-hidden shadow-xl"
-        onClick={(e) => e.stopPropagation()}
-        onMouseLeave={onMouseLeave}
-      >
-        <div className="relative bg-black">
-          <div className="aspect-[9/16] relative">
-            {!isPlaying ? (
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="w-full h-full object-cover cursor-pointer"
-                onClick={() => setIsPlaying(true)}
-              />
-            ) : (
-              <video
-                src={project.videoUrl}
-                className="w-full h-full object-cover"
-                autoPlay
-                controls
-                playsInline
-                onClick={(e) => e.stopPropagation()}
-              />
-            )}
-          </div>
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 bg-black/50 rounded-full p-2 z-10"
-          >
-            <X className="h-5 w-5 text-white" />
-          </button>
+      <div className="relative bg-black">
+        <div className="aspect-[9/16] relative">
+          {!isPlaying ? (
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              className="w-full h-full object-cover cursor-pointer"
+              onClick={() => setIsPlaying(true)}
+            />
+          ) : (
+            <video
+              src={project.videoUrl}
+              className="w-full h-full object-cover"
+              autoPlay
+              controls
+              playsInline
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
         </div>
-        <div className="p-4 bg-white dark:bg-gray-900">
-          <h3 className="font-medium text-lg">{project.title}</h3>
-          <p className="text-sm text-muted-foreground mt-1">{project.type}</p>
-        </div>
-      </motion.div>
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 bg-black/50 rounded-full p-2 z-10"
+        >
+          <X className="h-5 w-5 text-white" />
+        </button>
+      </div>
+      <div className="p-4 bg-white dark:bg-gray-900">
+        <h3 className="font-medium text-lg">{project.title}</h3>
+        <p className="text-sm text-muted-foreground mt-1">{project.type}</p>
+      </div>
     </motion.div>
   );
 }

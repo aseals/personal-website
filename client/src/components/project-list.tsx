@@ -51,8 +51,8 @@ export default function ProjectList({ projects }: ProjectListProps) {
   const activeProject = hoveredProject || selectedProject;
 
   return (
-    <>
-      <div className="space-y-4">
+    <div className="relative">
+      <div className="space-y-4 relative z-20">
         {years.map((year) => (
           <div key={year}>
             {projectsByYear[year].map((project) => (
@@ -82,6 +82,6 @@ export default function ProjectList({ projects }: ProjectListProps) {
           />
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }
