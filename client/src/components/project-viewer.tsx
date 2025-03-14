@@ -30,11 +30,11 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress, o
         opacity: 0,
         transition: { duration: 0.25, ease: "easeOut" }
       }}
-      className="fixed left-1/2 top-[10%] w-full max-w-[330px] z-50"
+      className="fixed sm:left-1/2 sm:top-[10%] inset-0 sm:inset-auto flex items-center justify-center sm:block w-full sm:max-w-[330px] z-50"
       onClick={(e) => e.stopPropagation()}
       onMouseLeave={onMouseLeave}
     >
-      <div className="relative bg-black rounded-xl overflow-hidden shadow-xl">
+      <div className="relative bg-black rounded-xl overflow-hidden shadow-xl mx-4 sm:mx-0">
         <div className="aspect-[9/16] relative">
           <video
             src={project.videoUrl}
