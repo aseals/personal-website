@@ -86,10 +86,6 @@ export default function ProjectList({ projects }: ProjectListProps) {
         {activeProject && (
           <ProjectViewer
             project={activeProject}
-            onClose={() => {
-              setSelectedProject(null);
-              setHoveredProject(null);
-            }}
             onMouseLeave={handleMouseLeave}
             cursorProgress={cursorProgress}
           />
