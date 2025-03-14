@@ -31,10 +31,9 @@ export default function Home() {
           Adventurer and UX Strategist Turning Complex Data into Clear, Actionable Insights
         </p>
         <div className="mt-4 space-x-6">
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground">About</a>
-          <a href="mailto:seals.pro@gmail.com" className="text-sm text-muted-foreground hover:text-foreground">Email</a>
           <a href="https://www.linkedin.com/in/ayannaseals/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">LinkedIn</a>
           <a href="https://scholar.google.com/citations?user=-XXuiGkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">Scholar</a>
+          <a href="mailto:seals.pro@gmail.com" className="text-sm text-muted-foreground hover:text-foreground">Email</a>
         </div>
       </div>
     </div>
