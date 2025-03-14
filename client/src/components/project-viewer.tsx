@@ -11,11 +11,11 @@ interface ProjectViewerProps {
 }
 
 export default function ProjectViewer({ project, onClose, onMouseLeave, cursorProgress }: ProjectViewerProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  //const [isPlaying, setIsPlaying] = useState(false); // Removed as video is always shown
 
-  useEffect(() => {
-    setIsPlaying(false);
-  }, [project.id]);
+  //useEffect(() => {
+  //  setIsPlaying(false);
+  //}, [project.id]); // Removed
 
   // Calculate x position based on cursor progress
   // Move 85% left by default (-85%), then add subtle movement based on cursor (-5% to +5%)
@@ -39,23 +39,15 @@ export default function ProjectViewer({ project, onClose, onMouseLeave, cursorPr
     >
       <div className="relative bg-black">
         <div className="aspect-[9/16] relative">
-          {!isPlaying ? (
-            <img
-              src={project.imageUrl}
-              alt={project.title}
-              className="w-full h-full object-cover cursor-pointer"
-              onClick={() => setIsPlaying(true)}
-            />
-          ) : (
-            <video
-              src={project.videoUrl}
-              className="w-full h-full object-cover"
-              autoPlay
-              controls
-              playsInline
-              onClick={(e) => e.stopPropagation()}
-            />
-          )}
+          <video
+            src={project.videoUrl}
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
         <button
           onClick={onClose}
