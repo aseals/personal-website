@@ -16,7 +16,7 @@ export default function ProjectViewer({ project, onClose }: ProjectViewerProps) 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-background/80 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
       <motion.div
@@ -48,7 +48,7 @@ export default function ProjectViewer({ project, onClose }: ProjectViewerProps) 
           </div>
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-2 z-10"
+            className="absolute top-4 right-4 bg-black/50 rounded-full p-2 z-10"
           >
             <X className="h-5 w-5 text-white" />
           </button>
