@@ -46,6 +46,16 @@ export default function ProjectList({ projects }: ProjectListProps) {
     setCursorProgress(progress);
   };
 
+  const handleClick = (project: Project) => {
+    if (isDesktop) return;
+    setSelectedProject(project);
+  };
+
+  const handleClose = () => {
+    setSelectedProject(null);
+    setHoveredProject(null);
+  };
+
   const projectsByYear = projects.reduce((acc, project) => {
     if (!acc[project.year]) {
       acc[project.year] = [];
@@ -68,7 +78,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
             {projectsByYear[year].map((project) => (
               <motion.button
                 key={project.id}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => handleClick(project)}
                 onMouseEnter={() => handleMouseEnter(project)}
                 onMouseLeave={handleMouseLeave}
                 onMouseMove={handleMouseMove}
@@ -88,6 +98,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
             project={activeProject}
             onMouseLeave={handleMouseLeave}
             cursorProgress={cursorProgress}
+            onClose={handleClose}
           />
         )}
       </AnimatePresence>

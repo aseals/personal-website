@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
+import { X } from "lucide-react";
 import type { Project } from "@shared/schema";
 
 interface ProjectViewerProps {
   project: Project;
   onMouseLeave: () => void;
   cursorProgress: number;
+  onClose: () => void;
 }
 
-export default function ProjectViewer({ project, onMouseLeave, cursorProgress }: ProjectViewerProps) {
+export default function ProjectViewer({ project, onMouseLeave, cursorProgress, onClose }: ProjectViewerProps) {
   // Calculate x position based on cursor progress
   // Move 85% left by default (-85%), then add subtle movement based on cursor (-5% to +5%)
   const xOffset = -85 + (cursorProgress - 0.5) * 10; // This creates a subtle 10% total movement range
@@ -44,6 +46,12 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress }:
             onClick={(e) => e.stopPropagation()}
           />
         </div>
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 p-2 rounded-full bg-black/50 lg:hidden"
+        >
+          <X className="h-5 w-5 text-white" />
+        </button>
       </div>
       <div className="mt-4">
         <h3 className="font-medium text-lg">{project.title}</h3>
