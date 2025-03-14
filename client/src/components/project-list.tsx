@@ -35,10 +35,10 @@ export default function ProjectList({ projects }: ProjectListProps) {
               <motion.button
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className="w-full text-left py-2 flex justify-between items-center group"
+                className="w-full text-left py-2 flex items-center whitespace-nowrap"
               >
-                <span className="text-base font-medium">{project.title}</span>
-                <span className="text-sm text-muted-foreground">{year}</span>
+                <span className="text-base font-medium truncate">{project.title}</span>
+                <span className="text-sm text-muted-foreground ml-4 flex-shrink-0">{year}</span>
               </motion.button>
             ))}
           </div>
