@@ -1,15 +1,21 @@
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { Project } from "@shared/schema";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ProjectViewerProps {
   project: Project;
   onClose: () => void;
+  onMouseLeave: () => void;
 }
 
-export default function ProjectViewer({ project, onClose }: ProjectViewerProps) {
+export default function ProjectViewer({ project, onClose, onMouseLeave }: ProjectViewerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
+
+  // Reset playing state when project changes
+  useEffect(() => {
+    setIsPlaying(false);
+  }, [project.id]);
 
   return (
     <motion.div
@@ -18,7 +24,7 @@ export default function ProjectViewer({ project, onClose }: ProjectViewerProps) 
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
-      onMouseLeave={() => !isPlaying && onClose()}
+      onMouseLeave={() => !isPlaying && onMouseLeave()}
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}

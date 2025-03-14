@@ -13,7 +13,7 @@ interface ProjectListProps {
 
 export default function ProjectList({ projects }: ProjectListProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [hoverTimer, setHoverTimer] = useState<NodeJS.Timeout | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -28,19 +28,12 @@ export default function ProjectList({ projects }: ProjectListProps) {
 
   const handleMouseEnter = (project: Project) => {
     if (!isDesktop) return;
-
-    const timer = setTimeout(() => {
-      setSelectedProject(project);
-    }, 200); // Slight delay to prevent accidental triggers
-
-    setHoverTimer(timer);
+    setHoveredProject(project);
   };
 
   const handleMouseLeave = () => {
-    if (hoverTimer) {
-      clearTimeout(hoverTimer);
-      setHoverTimer(null);
-    }
+    if (!isDesktop) return;
+    setHoveredProject(null);
   };
 
   const projectsByYear = projects.reduce((acc, project) => {
@@ -55,6 +48,8 @@ export default function ProjectList({ projects }: ProjectListProps) {
     .map(Number)
     .sort((a, b) => b - a);
 
+  const activeProject = hoveredProject || selectedProject;
+
   return (
     <>
       <div className="space-y-4">
@@ -65,7 +60,6 @@ export default function ProjectList({ projects }: ProjectListProps) {
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
                 onMouseEnter={() => handleMouseEnter(project)}
-                onMouseLeave={handleMouseLeave}
                 className="w-full text-left py-2 flex justify-between items-center group"
               >
                 <span className="text-base font-medium">{project.title}</span>
@@ -77,10 +71,14 @@ export default function ProjectList({ projects }: ProjectListProps) {
       </div>
 
       <AnimatePresence>
-        {selectedProject && (
+        {activeProject && (
           <ProjectViewer
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
+            project={activeProject}
+            onClose={() => {
+              setSelectedProject(null);
+              setHoveredProject(null);
+            }}
+            onMouseLeave={handleMouseLeave}
           />
         )}
       </AnimatePresence>
