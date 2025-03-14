@@ -18,8 +18,8 @@ export default function ProjectViewer({ project, onClose, onMouseLeave, cursorPr
   }, [project.id]);
 
   // Calculate x position based on cursor progress
-  // Move 25% left by default (-25%), then add subtle movement based on cursor (-5% to +5%)
-  const xOffset = -25 + (cursorProgress - 0.5) * 10; // This creates a subtle 10% total movement range
+  // Move 10% left by default (-10%), then add subtle movement based on cursor (-5% to +5%)
+  const xOffset = -10 + (cursorProgress - 0.5) * 10; // This creates a subtle 10% total movement range
 
   return (
     <motion.div
