@@ -16,50 +16,50 @@ export class MemStorage implements IStorage {
     // Initialize with sample data
     const sampleProjects: InsertProject[] = [
       {
-        title: "DM Resharing",
-        year: 2022,
-        type: "Feature",
-        imageUrl: "https://source.unsplash.com/random/800x800?ui=1",
+        title: "AI Insight Dashboard",
+        year: 2023,
+        type: "UX Research",
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=800&q=80",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/168/original/Record.mp4",
         order: 1
       },
       {
-        title: "Media Viewer",
-        year: 2022,
-        type: "Feature",
-        imageUrl: "https://source.unsplash.com/random/800x800?interface=2",
+        title: "Data Flow Visualization",
+        year: 2023,
+        type: "Analytics",
+        imageUrl: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&h=800&q=80",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/128/original/Mobile.mp4",
         order: 2
       },
       {
-        title: "Command System",
+        title: "Neural Network Explorer",
         year: 2022,
-        type: "System",
-        imageUrl: "https://source.unsplash.com/random/800x800?tech=3",
+        type: "Research",
+        imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=800&q=80",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/160/original/Typing.mp4",
         order: 3
       },
       {
-        title: "Data Visualization",
-        year: 2023,
-        type: "Analytics",
-        imageUrl: "https://source.unsplash.com/random/800x800?data=4",
+        title: "Predictive Analytics Platform",
+        year: 2022,
+        type: "Big Data",
+        imageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=800&q=80",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/158/original/Analytics.mp4",
         order: 4
       },
       {
-        title: "AI Insights",
-        year: 2023,
-        type: "Research",
-        imageUrl: "https://source.unsplash.com/random/800x800?ai=5",
+        title: "Machine Learning Interface",
+        year: 2022,
+        type: "AI Design",
+        imageUrl: "https://images.unsplash.com/photo-1488229297570-58520851e868?w=800&h=800&q=80",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/166/original/AI.mp4",
         order: 5
       },
       {
-        title: "UX Strategy",
+        title: "Data Pattern Recognition",
         year: 2023,
-        type: "Design",
-        imageUrl: "https://source.unsplash.com/random/800x800?ux=6",
+        type: "Research",
+        imageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=800&q=80",
         videoUrl: "https://static.videezy.com/system/resources/previews/000/000/164/original/UX.mp4",
         order: 6
       }

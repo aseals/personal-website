@@ -11,10 +11,10 @@ export default function Home() {
     return (
       <div className="min-h-screen p-8">
         <div className="max-w-screen-lg mx-auto">
-          <div className="mt-[240px] mb-16 text-center">
-            <div className="h-6 bg-muted rounded w-48 mx-auto mb-2" />
-            <div className="h-4 bg-muted rounded w-96 mx-auto mb-4" />
-            <div className="h-4 bg-muted rounded w-64 mx-auto" />
+          <div className="mt-[240px] mb-16">
+            <div className="h-6 bg-muted rounded w-48 mb-2" />
+            <div className="h-4 bg-muted rounded w-96 mb-4" />
+            <div className="h-4 bg-muted rounded w-64" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[...Array(6)].map((_, i) => (
@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-screen-lg mx-auto">
-        <div className="mt-[240px] mb-16 text-center">
+        <div className="mt-[240px] mb-16">
           <h1 className="text-xl font-medium mb-1">Ayanna Seals, PhD</h1>
           <p className="text-muted-foreground text-base">
             Big Data & AI UX Strategist | Turning Complex Data into Clear, Actionable Insights
