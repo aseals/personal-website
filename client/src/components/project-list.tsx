@@ -70,6 +70,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
                 onMouseEnter={() => handleMouseEnter(project)}
+                onMouseLeave={handleMouseLeave}
                 onMouseMove={handleMouseMove}
                 className="w-full text-left py-2 flex justify-between items-center group"
               >
