@@ -240,7 +240,7 @@ export default function Admin() {
         </div>
       </div>
       <div className="order-1 lg:order-1 mt-8 lg:mt-[240px] lg:ml-[120px]">
-        <ProjectList projects={projects || []} />
+        <ProjectList projects={projects || []} allowEditing />
       </div>
     </div>
   );

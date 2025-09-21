@@ -1,8 +1,9 @@
-import { projects, type Project, type InsertProject } from "@shared/schema";
+import { type Project, type InsertProject, type UpdateProject } from "@shared/schema";
 
 export interface IStorage {
   getProjects(): Promise<Project[]>;
   getProject(id: number): Promise<Project | undefined>;
+  updateProject(id: number, updates: UpdateProject): Promise<Project | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -54,6 +55,21 @@ export class MemStorage implements IStorage {
 
   async getProject(id: number): Promise<Project | undefined> {
     return this.projects.get(id);
+  }
+
+  async updateProject(id: number, updates: UpdateProject): Promise<Project | undefined> {
+    const existingProject = this.projects.get(id);
+    if (!existingProject) {
+      return undefined;
+    }
+
+    const updatedProject: Project = {
+      ...existingProject,
+      ...updates,
+    };
+
+    this.projects.set(id, updatedProject);
+    return updatedProject;
   }
 }
 
