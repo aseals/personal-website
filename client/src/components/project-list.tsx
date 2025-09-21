@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import type { Project } from "@shared/schema";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import type { Project, UpdateProject } from "@shared/schema";
 import { motion, AnimatePresence } from "framer-motion";
+import { apiRequest } from "@/lib/queryClient";
 import ProjectViewer from "./project-viewer";
 
 type ProjectsByYear = {
@@ -25,6 +27,75 @@ export default function ProjectList({ projects }: ProjectListProps) {
       }
     | null
   >(null);
+
+  const queryClient = useQueryClient();
+
+  const updateProjectMutation = useMutation<
+    Project,
+    Error,
+    { id: number; updates: UpdateProject },
+    {
+      previousProjects?: Project[];
+      previousEditableProjects?: Project[];
+    }
+  >({
+    mutationFn: async ({ id, updates }) => {
+      const response = await apiRequest("PATCH", `/api/projects/${id}`, updates);
+      return (await response.json()) as Project;
+    },
+    onMutate: async ({ id, updates }) => {
+      await queryClient.cancelQueries({ queryKey: ["/api/projects"] });
+
+      const previousProjects = queryClient.getQueryData<Project[]>(["/api/projects"]);
+      const previousProjectsClone = previousProjects?.map((project) => ({ ...project }));
+
+      let previousEditableProjects: Project[] | undefined;
+      setEditableProjects((prev) => {
+        previousEditableProjects = prev.map((project) => ({ ...project }));
+        return prev.map((project) =>
+          project.id === id ? { ...project, ...updates } : project,
+        );
+      });
+
+      queryClient.setQueryData<Project[]>(["/api/projects"], (existing) =>
+        existing
+          ? existing.map((project) =>
+              project.id === id ? { ...project, ...updates } : project,
+            )
+          : existing,
+      );
+
+      return {
+        previousProjects: previousProjectsClone,
+        previousEditableProjects,
+      };
+    },
+    onError: (_error, _variables, context) => {
+      if (context?.previousEditableProjects) {
+        setEditableProjects(context.previousEditableProjects);
+      }
+      if (context?.previousProjects) {
+        queryClient.setQueryData(["/api/projects"], context.previousProjects);
+      }
+    },
+    onSuccess: (updatedProject) => {
+      setEditableProjects((prev) =>
+        prev.map((project) =>
+          project.id === updatedProject.id ? updatedProject : project,
+        ),
+      );
+      queryClient.setQueryData<Project[]>(["/api/projects"], (projects) =>
+        projects
+          ? projects.map((project) =>
+              project.id === updatedProject.id ? updatedProject : project,
+            )
+          : projects,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/projects"] });
+    },
+  });
 
   useEffect(() => {
     setEditableProjects(projects);
@@ -85,28 +156,35 @@ export default function ProjectList({ projects }: ProjectListProps) {
   const commitEditing = () => {
     if (!editingField) return;
 
-    const trimmedValue = editingField.value.trim();
+    const field = editingField;
+    const trimmedValue = field.value.trim();
+    const project = editableProjects.find((item) => item.id === field.projectId);
 
-    setEditableProjects((prev) =>
-      prev.map((project) => {
-        if (project.id !== editingField.projectId) return project;
+    if (!project) {
+      setEditingField(null);
+      return;
+    }
 
-        if (editingField.field === "title") {
-          if (!trimmedValue) {
-            return project;
-          }
-          return { ...project, title: trimmedValue };
-        }
+    let updates: UpdateProject | null = null;
 
-        const parsedYear = parseInt(trimmedValue, 10);
-        if (Number.isNaN(parsedYear)) {
-          return project;
-        }
-        return { ...project, year: parsedYear };
-      }),
-    );
+    if (field.field === "title") {
+      if (trimmedValue && trimmedValue !== project.title) {
+        updates = { title: trimmedValue };
+      }
+    } else {
+      const parsedYear = Number.parseInt(trimmedValue, 10);
+      if (!Number.isNaN(parsedYear) && parsedYear !== project.year) {
+        updates = { year: parsedYear };
+      }
+    }
 
     setEditingField(null);
+
+    if (!updates) {
+      return;
+    }
+
+    updateProjectMutation.mutate({ id: project.id, updates });
   };
 
   const handleInputChange = (value: string) => {

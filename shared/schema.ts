@@ -21,5 +21,19 @@ export const insertProjectSchema = createInsertSchema(projects).pick({
   order: true,
 });
 
+export const updateProjectSchema = z
+  .object({
+    title: z
+      .string()
+      .trim()
+      .min(1, { message: "Title is required" })
+      .optional(),
+    year: z.coerce.number().int({ message: "Year must be an integer" }).optional(),
+  })
+  .refine((data) => data.title !== undefined || data.year !== undefined, {
+    message: "At least one field must be provided",
+  });
+
 export type InsertProject = z.infer<typeof insertProjectSchema>;
+export type UpdateProject = z.infer<typeof updateProjectSchema>;
 export type Project = typeof projects.$inferSelect;
