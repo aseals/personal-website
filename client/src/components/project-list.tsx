@@ -11,9 +11,13 @@ type ProjectsByYear = {
 
 interface ProjectListProps {
   projects: Project[];
+  allowEditing?: boolean;
 }
 
-export default function ProjectList({ projects }: ProjectListProps) {
+export default function ProjectList({
+  projects,
+  allowEditing = false,
+}: ProjectListProps) {
   const [editableProjects, setEditableProjects] = useState<Project[]>(projects);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
   const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
@@ -102,6 +106,12 @@ export default function ProjectList({ projects }: ProjectListProps) {
   }, [projects]);
 
   useEffect(() => {
+    if (!allowEditing) {
+      setEditingField(null);
+    }
+  }, [allowEditing]);
+
+  useEffect(() => {
     const checkDesktop = () => {
       setIsDesktop(window.matchMedia('(min-width: 1024px)').matches);
     };
@@ -142,6 +152,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
   };
 
   const startEditing = (project: Project, field: "title" | "year") => {
+    if (!allowEditing) return;
     setEditingField({
       projectId: project.id,
       field,
@@ -154,6 +165,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
   };
 
   const commitEditing = () => {
+    if (!allowEditing) return;
     if (!editingField) return;
 
     const field = editingField;
@@ -235,11 +247,17 @@ export default function ProjectList({ projects }: ProjectListProps) {
                 }}
               >
                 <span
-                  className="text-base font-medium cursor-text"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    startEditing(project, "title");
-                  }}
+                  className={`text-base font-medium ${
+                    allowEditing ? "cursor-text" : "cursor-default"
+                  }`}
+                  onClick={
+                    allowEditing
+                      ? (event) => {
+                          event.stopPropagation();
+                          startEditing(project, "title");
+                        }
+                      : undefined
+                  }
                 >
                   {editingField?.projectId === project.id && editingField.field === "title" ? (
                     <input
@@ -265,11 +283,17 @@ export default function ProjectList({ projects }: ProjectListProps) {
                   )}
                 </span>
                 <span
-                  className="text-sm text-muted-foreground cursor-text"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    startEditing(project, "year");
-                  }}
+                  className={`text-sm text-muted-foreground ${
+                    allowEditing ? "cursor-text" : "cursor-default"
+                  }`}
+                  onClick={
+                    allowEditing
+                      ? (event) => {
+                          event.stopPropagation();
+                          startEditing(project, "year");
+                        }
+                      : undefined
+                  }
                 >
                   {editingField?.projectId === project.id && editingField.field === "year" ? (
                     <input
