@@ -421,7 +421,7 @@ export default function MinimalDataAIRoadmap() {
   return (
     <section
       aria-label="Data & AI Roadmap"
-      className="mx-auto max-w-2xl px-6 py-2 bg-white text-slate-900 [color-scheme:light]"
+      className="w-full max-w-2xl px-0 py-2 bg-white text-slate-900 [color-scheme:light]"
       style={{
         ['--background' as any]: '0 0% 100%', ['--foreground' as any]: '222.2 84% 4.9%',
         ['--card' as any]: '0 0% 100%', ['--card-foreground' as any]: '222.2 84% 4.9%',
@@ -448,7 +448,7 @@ export default function MinimalDataAIRoadmap() {
         <div key={cat.id} id={slugify(cat.title)} className="mb-2">
           <Accordion type="single" collapsible>
             <AccordionItem value={cat.id}>
-              <AccordionTrigger className="py-1 text-base font-medium hover:no-underline">
+              <AccordionTrigger className="py-1 text-sm font-medium text-left hover:no-underline">
                 <div className="w-full">{cat.title}</div>
               </AccordionTrigger>
               <AccordionContent className="pt-1">
@@ -456,7 +456,7 @@ export default function MinimalDataAIRoadmap() {
                   {cat.skills.length ? (
                     cat.skills.map((skill) => (
                       <details key={skill.id} className="group">
-                        <summary className="cursor-pointer list-none py-1 text-[15px] text-slate-700 hover:text-slate-900">{skill.title}</summary>
+                        <summary className="cursor-pointer list-none py-1 text-sm text-slate-700 hover:text-slate-900">{skill.title}</summary>
                         <div className="ml-4 mt-1 divide-y divide-slate-100">
                           {skill.concepts.map((k) => {
                             const savedUrl = conceptLinks[k.id]?.url || k.url;

@@ -199,7 +199,7 @@ export default function Admin() {
 
   return (
     <div className="min-h-screen p-8 grid lg:grid-cols-[300px_1fr] gap-x-32">
-      <div className="order-1 lg:order-2 mt-[240px]">
+      <div className="order-2 lg:order-2 mt-12 lg:mt-[240px]">
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-xl font-medium mb-1">Ayanna Seals, PhD</h1>
@@ -239,7 +239,7 @@ export default function Admin() {
           <MinimalDataAIRoadmap />
         </div>
       </div>
-      <div className="order-2 lg:order-1 mt-8 lg:mt-[240px] lg:ml-[120px]">
+      <div className="order-1 lg:order-1 mt-8 lg:mt-[240px] lg:ml-[120px]">
         <ProjectList projects={projects || []} />
       </div>
     </div>
