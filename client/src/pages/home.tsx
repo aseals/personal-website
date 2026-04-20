@@ -1,8 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "wouter";
 import type { Project } from "@shared/schema";
 import ProjectList from "@/components/project-list";
 
 export default function Home() {
+  const params = useParams<{ slug?: string }>();
+  const slug = params.slug;
+
   const { data: projects, isLoading } = useQuery<Project[]>({
     queryKey: ["/api/projects"],
   });
@@ -22,7 +26,7 @@ export default function Home() {
   return (
     <div className="min-h-screen p-8 grid lg:grid-cols-[300px_1fr] gap-x-32">
       <div className="order-2 lg:order-1 mt-8 lg:mt-[240px] lg:ml-[120px]">
-        <ProjectList projects={projects || []} />
+        <ProjectList projects={projects || []} activeSlug={slug} />
       </div>
 
       <div className="order-1 lg:order-2 mt-[240px]">

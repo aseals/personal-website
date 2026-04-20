@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import type { Project, UpdateProject } from "@shared/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { apiRequest } from "@/lib/queryClient";
+import { slugify } from "@/lib/slug";
 import ProjectViewer from "./project-viewer";
 
 type ProjectsByYear = {
@@ -12,12 +14,16 @@ type ProjectsByYear = {
 interface ProjectListProps {
   projects: Project[];
   allowEditing?: boolean;
+  /** When present, opens the matching project's viewer on mount (deep-linking). */
+  activeSlug?: string;
 }
 
 export default function ProjectList({
   projects,
   allowEditing = false,
+  activeSlug,
 }: ProjectListProps) {
+  const [, setLocation] = useLocation();
   const [editableProjects, setEditableProjects] = useState<Project[]>(projects);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
   const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
@@ -105,6 +111,18 @@ export default function ProjectList({
     setEditableProjects(projects);
   }, [projects]);
 
+  // Sync URL slug → selected project (for deep-link hits like /projects/onward)
+  useEffect(() => {
+    if (!activeSlug) {
+      setSelectedProjectId(null);
+      return;
+    }
+    const match = editableProjects.find(
+      (project) => slugify(project.title) === activeSlug,
+    );
+    setSelectedProjectId(match ? match.id : null);
+  }, [activeSlug, editableProjects]);
+
   useEffect(() => {
     if (!allowEditing) {
       setEditingField(null);
@@ -141,14 +159,19 @@ export default function ProjectList({
   };
 
   const handleClick = (project: Project) => {
-    if (isDesktop) return;
     if (editingField) return;
+    // On desktop hover already drives the viewer — a click promotes it to a
+    // shareable URL. On mobile this is the primary open path.
     setSelectedProjectId(project.id);
+    setLocation(`/projects/${slugify(project.title)}`);
   };
 
   const handleClose = () => {
     setSelectedProjectId(null);
     setHoveredProjectId(null);
+    if (activeSlug) {
+      setLocation("/");
+    }
   };
 
   const startEditing = (project: Project, field: "title" | "year") => {
