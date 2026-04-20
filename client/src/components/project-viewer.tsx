@@ -54,7 +54,7 @@ export default function ProjectViewer({
         opacity: 0,
         transition: { duration: 0.25, ease: "easeOut" }
       }}
-      className={`fixed inset-0 sm:inset-auto sm:left-1/2 sm:top-[10%] flex items-center justify-center sm:block w-full z-50 ${
+      className={`fixed inset-0 sm:inset-auto sm:left-1/2 sm:top-[5%] flex flex-col items-center justify-start sm:block w-full z-50 overflow-y-auto max-h-screen sm:max-h-[90vh] py-6 sm:py-0 ${
         isLandscape ? "sm:max-w-[960px]" : "sm:max-w-[540px]"
       }`}
       onClick={(e) => e.stopPropagation()}
@@ -89,21 +89,11 @@ export default function ProjectViewer({
           <X className="h-5 w-5 text-white" />
         </button>
       </div>
-      <div
-        className={`mt-4 px-4 sm:px-0 ${
-          showBackdrop ? "text-white drop-shadow" : "text-foreground"
-        }`}
-      >
+      <div className="mt-4 mx-4 sm:mx-0 bg-background rounded-lg p-4 text-foreground shadow-sm">
         <h3 className="font-medium text-lg">{project.title}</h3>
-        <p className={`text-sm ${showBackdrop ? "text-white/80" : "text-muted-foreground"}`}>
-          {project.type}
-        </p>
+        <p className="text-sm text-muted-foreground">{project.type}</p>
         {project.description && (
-          <p
-            className={`mt-3 text-sm leading-relaxed ${
-              showBackdrop ? "text-white/90" : "text-foreground/90"
-            }`}
-          >
+          <p className="mt-3 text-sm leading-relaxed text-foreground/90">
             {project.description}
           </p>
         )}
