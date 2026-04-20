@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useState } from "react";
 import type { Project } from "@shared/schema";
 
 interface ProjectViewerProps {
@@ -12,6 +13,10 @@ interface ProjectViewerProps {
 export default function ProjectViewer({ project, onMouseLeave, cursorProgress, onClose }: ProjectViewerProps) {
   // Calculate x position based on cursor progress
   const xOffset = -85 + (cursorProgress - 0.5) * 10;
+
+  // Detect video aspect ratio so landscape clips aren't cropped by a 9:16 frame
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
+  const isLandscape = aspectRatio !== null && aspectRatio > 1;
 
   return (
     <motion.div
@@ -29,19 +34,30 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress, o
         opacity: 0,
         transition: { duration: 0.25, ease: "easeOut" }
       }}
-      className="fixed inset-0 sm:inset-auto sm:left-1/2 sm:top-[10%] flex items-center justify-center sm:block w-full sm:max-w-[330px] z-50"
+      className={`fixed inset-0 sm:inset-auto sm:left-1/2 sm:top-[10%] flex items-center justify-center sm:block w-full z-50 ${
+        isLandscape ? "sm:max-w-[560px]" : "sm:max-w-[330px]"
+      }`}
       onClick={(e) => e.stopPropagation()}
       onMouseLeave={onMouseLeave}
     >
       <div className="relative bg-black rounded-xl overflow-hidden shadow-xl w-[calc(100%-2rem)] sm:w-full">
-        <div className="aspect-[9/16] relative">
+        <div
+          className="relative"
+          style={{ aspectRatio: aspectRatio ?? 9 / 16 }}
+        >
           <video
             src={project.videoUrl}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
             autoPlay
             muted
             loop
             playsInline
+            onLoadedMetadata={(e) => {
+              const v = e.currentTarget;
+              if (v.videoWidth && v.videoHeight) {
+                setAspectRatio(v.videoWidth / v.videoHeight);
+              }
+            }}
             onClick={(e) => e.stopPropagation()}
           />
         </div>
