@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Maximize, X } from "lucide-react";
+import { Maximize, MousePointerClick, X } from "lucide-react";
 import { useRef, useState } from "react";
 import type { Project } from "@shared/schema";
 
@@ -134,6 +134,12 @@ export default function ProjectViewer({
         {project.description && (
           <p className="mt-3 text-sm leading-relaxed text-foreground/90">
             {project.description}
+          </p>
+        )}
+        {!showBackdrop && (
+          <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground/80">
+            <MousePointerClick className="h-3 w-3" />
+            click to keep open
           </p>
         )}
       </div>
