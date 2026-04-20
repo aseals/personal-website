@@ -203,8 +203,9 @@ export default function Admin() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-xl font-medium mb-1">Ayanna Seals, PhD</h1>
-            <p className="text-muted-foreground text-base">
-              Adventurer and UX Strategist Turning Complex Data into Clear, Actionable Insights
+            <p className="text-foreground text-base font-bold">
+              Adventurer and product designer building tools for{" "}
+              <span className="text-fuchsia-600">community sustainability</span>
             </p>
             <div className="mt-4 space-x-6">
               <a
