@@ -25,11 +25,11 @@ export class MemStorage implements IStorage {
         order: 1
       },
       {
-        title: "Media Viewer",
+        title: "amplify",
         year: 2022,
         type: "Feature",
         imageUrl: "https://source.unsplash.com/random/800x1000?app=2",
-        videoUrl: "https://static.videezy.com/system/resources/previews/000/000/128/original/Mobile.mp4",
+        videoUrl: "/videos/amplify.mp4",
         order: 2
       },
       {
