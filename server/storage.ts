@@ -33,7 +33,7 @@ export class MemStorage implements IStorage {
         order: 2
       },
       {
-        title: "gait-assessment",
+        title: "clinicianX",
         year: 2022,
         type: "System",
         imageUrl: "https://source.unsplash.com/random/800x1000?design=3",

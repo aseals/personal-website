@@ -26,7 +26,7 @@ export default function Home() {
       </div>
 
       <div className="order-1 lg:order-2 mt-[240px]">
-        <h1 className="text-xl font-medium mb-1">Ayanna Seals, PhD</h1>
+        <h1 className="text-xl font-medium mb-1">Ayanna Seals</h1>
         <p className="text-muted-foreground text-base">
           Adventurer and UX Strategist Turning Complex Data into Clear, Actionable Insights
         </p>
