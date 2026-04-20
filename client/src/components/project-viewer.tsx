@@ -8,9 +8,17 @@ interface ProjectViewerProps {
   onMouseLeave: () => void;
   cursorProgress: number;
   onClose: () => void;
+  /** Click-activated viewers render a backdrop so clicking outside closes. */
+  showBackdrop?: boolean;
 }
 
-export default function ProjectViewer({ project, onMouseLeave, cursorProgress, onClose }: ProjectViewerProps) {
+export default function ProjectViewer({
+  project,
+  onMouseLeave,
+  cursorProgress,
+  onClose,
+  showBackdrop = false,
+}: ProjectViewerProps) {
   // Calculate x position based on cursor progress; keep viewer centered
   // horizontally so larger widths don't clip off the left edge of the viewport.
   const xOffset = -50 + (cursorProgress - 0.5) * 10;
@@ -20,7 +28,18 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress, o
   const isLandscape = aspectRatio !== null && aspectRatio > 1;
 
   return (
-    <motion.div
+    <>
+      {showBackdrop && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 bg-black/40 z-40"
+          onClick={onClose}
+        />
+      )}
+      <motion.div
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ 
         scale: 1, 
@@ -64,7 +83,8 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress, o
         </div>
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 p-2 rounded-full bg-black/50 sm:hidden"
+          aria-label="Close"
+          className="absolute top-2 right-2 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
         >
           <X className="h-5 w-5 text-white" />
         </button>
@@ -73,6 +93,7 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress, o
         <h3 className="font-medium text-lg">{project.title}</h3>
         <p className="text-sm text-muted-foreground">{project.type}</p>
       </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 }

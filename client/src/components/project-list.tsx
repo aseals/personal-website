@@ -355,6 +355,7 @@ export default function ProjectList({
             onMouseLeave={handleMouseLeave}
             cursorProgress={cursorProgress}
             onClose={handleClose}
+            showBackdrop={selectedProjectId != null}
           />
         )}
       </AnimatePresence>
