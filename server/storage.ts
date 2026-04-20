@@ -18,7 +18,7 @@ export class MemStorage implements IStorage {
     const sampleProjects: InsertProject[] = [
       {
         title: "onward",
-        year: 2022,
+        year: 2026,
         type: "Feature",
         imageUrl: "https://source.unsplash.com/random/800x1000?ui=1",
         videoUrl: "/videos/onward.mp4",
@@ -26,7 +26,7 @@ export class MemStorage implements IStorage {
       },
       {
         title: "amplify",
-        year: 2022,
+        year: 2026,
         type: "Feature",
         imageUrl: "https://source.unsplash.com/random/800x1000?app=2",
         videoUrl: "/videos/amplify.mp4",
