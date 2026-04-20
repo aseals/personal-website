@@ -35,7 +35,7 @@ export default function ProjectViewer({ project, onMouseLeave, cursorProgress, o
         transition: { duration: 0.25, ease: "easeOut" }
       }}
       className={`fixed inset-0 sm:inset-auto sm:left-1/2 sm:top-[10%] flex items-center justify-center sm:block w-full z-50 ${
-        isLandscape ? "sm:max-w-[560px]" : "sm:max-w-[330px]"
+        isLandscape ? "sm:max-w-[720px]" : "sm:max-w-[420px]"
       }`}
       onClick={(e) => e.stopPropagation()}
       onMouseLeave={onMouseLeave}
