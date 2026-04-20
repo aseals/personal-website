@@ -33,11 +33,11 @@ export class MemStorage implements IStorage {
         order: 2
       },
       {
-        title: "Command System",
+        title: "gait-assessment",
         year: 2022,
         type: "System",
         imageUrl: "https://source.unsplash.com/random/800x1000?design=3",
-        videoUrl: "https://static.videezy.com/system/resources/previews/000/000/160/original/Typing.mp4",
+        videoUrl: "/videos/gait-assessment.mp4",
         order: 3
       }
     ];

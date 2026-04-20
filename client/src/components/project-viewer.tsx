@@ -11,8 +11,9 @@ interface ProjectViewerProps {
 }
 
 export default function ProjectViewer({ project, onMouseLeave, cursorProgress, onClose }: ProjectViewerProps) {
-  // Calculate x position based on cursor progress
-  const xOffset = -85 + (cursorProgress - 0.5) * 10;
+  // Calculate x position based on cursor progress; keep viewer centered
+  // horizontally so larger widths don't clip off the left edge of the viewport.
+  const xOffset = -50 + (cursorProgress - 0.5) * 10;
 
   // Detect video aspect ratio so landscape clips aren't cropped by a 9:16 frame
   const [aspectRatio, setAspectRatio] = useState<number | null>(null);
