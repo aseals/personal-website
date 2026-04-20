@@ -89,9 +89,9 @@ export default function ProjectViewer({
           <X className="h-5 w-5 text-white" />
         </button>
       </div>
-      <div className="mt-4">
-        <h3 className="font-medium text-lg">{project.title}</h3>
-        <p className="text-sm text-muted-foreground">{project.type}</p>
+      <div className="mt-4 px-4 sm:px-0">
+        <h3 className="font-medium text-lg text-white drop-shadow">{project.title}</h3>
+        <p className="text-sm text-white/80 drop-shadow">{project.type}</p>
       </div>
       </motion.div>
     </>
