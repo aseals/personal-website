@@ -89,9 +89,24 @@ export default function ProjectViewer({
           <X className="h-5 w-5 text-white" />
         </button>
       </div>
-      <div className="mt-4 px-4 sm:px-0">
-        <h3 className="font-medium text-lg text-white drop-shadow">{project.title}</h3>
-        <p className="text-sm text-white/80 drop-shadow">{project.type}</p>
+      <div
+        className={`mt-4 px-4 sm:px-0 ${
+          showBackdrop ? "text-white drop-shadow" : "text-foreground"
+        }`}
+      >
+        <h3 className="font-medium text-lg">{project.title}</h3>
+        <p className={`text-sm ${showBackdrop ? "text-white/80" : "text-muted-foreground"}`}>
+          {project.type}
+        </p>
+        {project.description && (
+          <p
+            className={`mt-3 text-sm leading-relaxed ${
+              showBackdrop ? "text-white/90" : "text-foreground/90"
+            }`}
+          >
+            {project.description}
+          </p>
+        )}
       </div>
       </motion.div>
     </>

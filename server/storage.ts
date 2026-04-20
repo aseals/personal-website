@@ -22,6 +22,8 @@ export class MemStorage implements IStorage {
         type: "Feature",
         imageUrl: "https://source.unsplash.com/random/800x1000?ui=1",
         videoUrl: "/videos/onward.mp4",
+        description:
+          "People worldwide are being locked out of the future of work because few pathways exists from zero tech literacy to real participation. Onward is a three-stage system that bridges that gap by training the one skill that doesn't go obsolete: the ability to figure it out. Users enter through a persistence-based gate, build self-teaching habits through a repeatable method, then advance into training for emerging AI reviewer roles. The design had to work on low-end phones with spotty data while still feeling credible enough to earn trust from both learners in constrained environments and the institutional partners needed to scale it.",
         order: 1
       },
       {
@@ -30,6 +32,7 @@ export class MemStorage implements IStorage {
         type: "Feature",
         imageUrl: "https://source.unsplash.com/random/800x1000?app=2",
         videoUrl: "/videos/amplify.mp4",
+        description: null,
         order: 2
       },
       {
@@ -38,13 +41,14 @@ export class MemStorage implements IStorage {
         type: "System",
         imageUrl: "https://source.unsplash.com/random/800x1000?design=3",
         videoUrl: "/videos/gait-assessment.mp4",
+        description: null,
         order: 3
       }
     ];
 
     sampleProjects.forEach(project => {
       const id = this.currentId++;
-      this.projects.set(id, { ...project, id });
+      this.projects.set(id, { description: null, ...project, id });
     });
   }
 

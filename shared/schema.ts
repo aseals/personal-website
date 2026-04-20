@@ -9,6 +9,7 @@ export const projects = pgTable("projects", {
   type: text("type").notNull(),
   imageUrl: text("image_url").notNull(),
   videoUrl: text("video_url").notNull(),
+  description: text("description"),
   order: integer("order").notNull(),
 });
 
@@ -18,6 +19,7 @@ export const insertProjectSchema = createInsertSchema(projects).pick({
   type: true,
   imageUrl: true,
   videoUrl: true,
+  description: true,
   order: true,
 });
 
