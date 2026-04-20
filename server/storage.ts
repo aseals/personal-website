@@ -32,7 +32,8 @@ export class MemStorage implements IStorage {
         type: "Feature",
         imageUrl: "https://source.unsplash.com/random/800x1000?app=2",
         videoUrl: "/videos/amplify.mp4",
-        description: null,
+        description:
+          "Amplify is an open-source operations platform that helps organizations spend less time on scaffolding like scheduling, coordination, and reporting, and more time on the work that matters, whether that's running a food co-op or delivering client services. The design challenge was making a tool powerful enough for professional services teams feel equally approachable to a volunteer coordinator with no technical background. The solution: a single, consistent interface built around processes people already recognize, cataloging workflows, assigning roles, and automating the repetitive parts, so the same patterns scale from a 50-person mutual aid group to a 17,000-member organization without adding complexity for the user.",
         order: 2
       },
       {
@@ -41,7 +42,8 @@ export class MemStorage implements IStorage {
         type: "System",
         imageUrl: "https://source.unsplash.com/random/800x1000?design=3",
         videoUrl: "/videos/gait-assessment.mp4",
-        description: null,
+        description:
+          "Clinicians assessing chronic neurological conditions rely on brief in-clinic observations that miss how patients actually move in daily life. Wearable sensors can close that gap, but only if the interface makes the data usable at the pace of clinical work. I led the design of a data-rich visualization prototype and used it as a probe in interviews with 10 clinicians, surfacing a core tension between grasping critical information quickly and exploring it in depth. The findings produced design recommendations for remote rehabilitation interfaces, published at CHI 2022.",
         order: 3
       }
     ];
