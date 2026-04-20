@@ -17,11 +17,11 @@ export class MemStorage implements IStorage {
     // Initialize with sample data
     const sampleProjects: InsertProject[] = [
       {
-        title: "DM Resharing",
+        title: "onward",
         year: 2022,
         type: "Feature",
         imageUrl: "https://source.unsplash.com/random/800x1000?ui=1",
-        videoUrl: "https://static.videezy.com/system/resources/previews/000/000/168/original/Record.mp4",
+        videoUrl: "/videos/onward.mp4",
         order: 1
       },
       {
