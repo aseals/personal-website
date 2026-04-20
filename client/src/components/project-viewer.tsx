@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
-import { useState } from "react";
+import { Maximize, X } from "lucide-react";
+import { useRef, useState } from "react";
 import type { Project } from "@shared/schema";
 
 interface ProjectViewerProps {
@@ -26,6 +26,28 @@ export default function ProjectViewer({
   // Detect video aspect ratio so landscape clips aren't cropped by a 9:16 frame
   const [aspectRatio, setAspectRatio] = useState<number | null>(null);
   const isLandscape = aspectRatio !== null && aspectRatio > 1;
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleFullscreen = async (event: React.MouseEvent) => {
+    event.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+    try {
+      // iOS Safari exposes a non-standard webkit API on the video element itself.
+      const iosFs = (video as unknown as { webkitEnterFullscreen?: () => void })
+        .webkitEnterFullscreen;
+      if (typeof iosFs === "function") {
+        iosFs.call(video);
+        return;
+      }
+      if (video.requestFullscreen) {
+        await video.requestFullscreen();
+      }
+    } catch {
+      // fail quietly — some mobile browsers reject fullscreen requests
+    }
+  };
 
   return (
     <>
@@ -57,15 +79,19 @@ export default function ProjectViewer({
       className={`fixed inset-0 sm:inset-auto sm:left-1/2 sm:top-[5%] flex flex-col items-center justify-start sm:block w-full z-50 overflow-y-auto max-h-screen sm:max-h-[90vh] py-6 sm:py-0 ${
         isLandscape ? "sm:max-w-[960px]" : "sm:max-w-[540px]"
       }`}
-      onClick={(e) => e.stopPropagation()}
+      onClick={onClose}
       onMouseLeave={onMouseLeave}
     >
-      <div className="relative bg-black rounded-xl overflow-hidden shadow-xl w-[calc(100%-2rem)] sm:w-full">
+      <div
+        className="relative bg-black rounded-xl overflow-hidden shadow-xl w-[calc(100%-2rem)] sm:w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div
           className="relative"
           style={{ aspectRatio: aspectRatio ?? 9 / 16 }}
         >
           <video
+            ref={videoRef}
             src={project.videoUrl}
             className="w-full h-full object-contain"
             autoPlay
@@ -82,14 +108,27 @@ export default function ProjectViewer({
           />
         </div>
         <button
-          onClick={onClose}
+          onClick={handleFullscreen}
+          aria-label="Fullscreen"
+          className="absolute top-2 right-12 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+        >
+          <Maximize className="h-5 w-5 text-white" />
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
           aria-label="Close"
           className="absolute top-2 right-2 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
         >
           <X className="h-5 w-5 text-white" />
         </button>
       </div>
-      <div className="mt-4 mx-4 sm:mx-0 bg-background rounded-lg p-4 text-foreground shadow-sm">
+      <div
+        className="mt-4 mx-4 sm:mx-0 bg-background rounded-lg p-4 text-foreground shadow-sm"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h3 className="font-medium text-lg">{project.title}</h3>
         <p className="text-sm text-muted-foreground">{project.type}</p>
         {project.description && (
