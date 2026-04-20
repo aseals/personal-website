@@ -101,17 +101,17 @@ human computer interaction, augmented reality, self-focused attention, self-regu
 
 The old site embedded a YouTube background video: https://www.youtube.com/watch?v=CaKsEdaLek0
 
-## Assets referenced on old site (not archived locally)
+## Archived assets
 
-- `img/fav.png` — favicon
-- `img/bg-1.jpg` — background image
-- `img/logo.png`
-- `img/ayanna_seals%20color.png` — avatar
-- `img/portfolio/ubiqomix.png`
-- `img/portfolio/sonyc.png`
-- `img/portfolio/retirement.png`
-- `img/portfolio/decentra.png`
-- `img/portfolio/sensory_steps.png` (commented out)
-- `img/seals-CV.pdf` — CV
+All downloaded from the live GitHub Pages site on 2026-04-20. Paths are relative to this `archives/` folder.
 
-If you ever need these, the GitHub Pages repo under your account should still have them.
+- [`ayannaseals.com-assets/img/fav.png`](./ayannaseals.com-assets/img/fav.png) — favicon
+- [`ayannaseals.com-assets/img/bg-1.jpg`](./ayannaseals.com-assets/img/bg-1.jpg) — background image (~5.7 MB)
+- [`ayannaseals.com-assets/img/logo.png`](./ayannaseals.com-assets/img/logo.png)
+- [`ayannaseals.com-assets/img/ayanna_seals color.png`](./ayannaseals.com-assets/img/ayanna_seals%20color.png) — avatar
+- [`ayannaseals.com-assets/img/portfolio/ubiqomix.png`](./ayannaseals.com-assets/img/portfolio/ubiqomix.png)
+- [`ayannaseals.com-assets/img/portfolio/sonyc.png`](./ayannaseals.com-assets/img/portfolio/sonyc.png)
+- [`ayannaseals.com-assets/img/portfolio/retirement.png`](./ayannaseals.com-assets/img/portfolio/retirement.png)
+- [`ayannaseals.com-assets/img/portfolio/decentra.png`](./ayannaseals.com-assets/img/portfolio/decentra.png)
+- [`ayannaseals.com-assets/img/portfolio/sensory_steps.png`](./ayannaseals.com-assets/img/portfolio/sensory_steps.png) — was commented out in HTML
+- [`ayannaseals.com-assets/img/seals-CV.pdf`](./ayannaseals.com-assets/img/seals-CV.pdf) — CV
